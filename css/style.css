@@ -1,0 +1,81 @@
+ :root{--bg:#f7f5f1;--paper:#fbfaf7;--ink:#282624;--muted:#786f68;--brown:#9a8172;--gold:#b59a6a;--line:rgba(70,60,52,.22);--blue:#8a9dae;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,sans-serif;font-weight:300;overflow-x:hidden}a{text-decoration:none;color:inherit}button{font:inherit}
+.loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--paper);transition:.8s}.loader.hide{opacity:0;visibility:hidden}.loader span{font:2rem Cormorant Garamond,serif;letter-spacing:.2em;color:var(--brown)}
+.hero{
+    min-height:100svh;
+    position:relative;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    overflow:hidden;
+    background-image: url(../imgs/alianca.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+}
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding:6rem 1rem
+}
+.eyebrow{
+    margin:0 0 1.4rem;
+    font-size:.67rem;
+    letter-spacing:.42em;
+    text-transform:uppercase
+}
+.some{
+    display: none;
+}
+.icones{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    gap: 25px;
+    a{
+        img{
+            width: 47px;
+            height: 50px;
+        }
+    }
+}
+
+.hero .eyebrow{color:#fff}.hero h1{margin:0;color:#fff;font:400 clamp(5rem,13vw,12rem) Italianno,cursive;line-height:.8;text-shadow:0 5px 18px rgba(45,38,34,.16)}.hero h1 b{font:italic 300 .5em Cormorant Garamond,serif}.date{color:#fff;letter-spacing:.5em;padding-left:.5em;margin:2rem 0 1rem}
+.hero-text{font:italic 0.8rem Cormorant Garamond,serif;color:#fff}
+.hero button,.button,.outline{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.85rem 1.7rem;border:1px solid currentColor;background:transparent;text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;cursor:pointer;transition:.3s}.hero button{color:#fff;border-color:#fff}.hero button:hover,.button:hover,.outline:hover{background:var(--ink);color:#fff;border-color:var(--ink)}.scroll{position:absolute;bottom:1.3rem;z-index:3;color:#fff;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase}.scroll span{display:block;width:1px;height:32px;background:#fff;margin:8px auto}.ramos{position:absolute;z-index:1;top:0;width:38vw;height:300px;opacity:.65}.ramo-left{left:0}.ramo-right{right:0;transform:scaleX(-1)}.ramos:before,.ramos:after{content:"";position:absolute;height:2px;background:rgba(255,255,255,.75);border-radius:50%;width:90%;top:70px;left:0;transform:rotate(17deg)}.ramos:after{top:125px;width:70%;transform:rotate(30deg)}
+.section{
+    padding:9rem 1.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.intro{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.content{width:min(100%,var(--max));margin:auto;text-align:center}.section h2{margin:0;font:300 clamp(3rem,6vw,5.6rem)/.9 Cormorant Garamond,serif}.section h2 em{color:var(--brown);font-style:italic}.text{max-width:560px;margin:2rem auto 0;color:var(--muted);font-size:.82rem;line-height:2.1}.ornament{margin:2rem;color:var(--gold)}.photo{position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#bdb5ac,#dcd6cc)}.photo span{position:relative;color:#fff;font-size:.55rem;letter-spacing:.25em}.photo-main{min-height:78svh}.date-section{background:var(--bg)}.weekday{margin:1.8rem 0 0;font-size:.7rem;letter-spacing:.5em;color:var(--brown)}.line{width:70px;height:1px;margin:2rem auto;background:var(--line)}.countdown{display:flex;justify-content:center;gap:clamp(1.2rem,5vw,4rem);margin-top:2.5rem}.countdown strong{display:block;font:2.6rem Cormorant Garamond,serif}.countdown small{font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.story{background:#ece8e1}.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(3rem,8vw,8rem);align-items:center;text-align:left}.story-grid .text{margin-left:0}.story-photo{min-height:650px}.details .card{max-width:620px;margin:3rem auto 0;padding:4rem 2rem;border:1px solid var(--line)}.pin{font-size:2rem;color:var(--brown)}.card p{font-size:.6rem;letter-spacing:.35em}.card h3{font:400 2rem Cormorant Garamond,serif}.gallery{background:#eeeae4}.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:4rem}.gallery-grid .photo{min-height:260px}.gallery-grid .photo:nth-child(1){grid-column:span 7}.gallery-grid .photo:nth-child(2){grid-column:span 5}.gallery-grid .photo:nth-child(3){grid-column:span 5}.gallery-grid .photo:nth-child(4){grid-column:span 7}.rsvp{background:var(--blue);color:#fff}.rsvp .eyebrow,.rsvp .text{color:rgba(255,255,255,.85)}.rsvp .button{margin-top:2rem;color:#fff;border-color:#fff}.gift{background:var(--paper)}.gift .outline{margin-top:2rem}.final-photo{min-height:75svh;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(90,85,78,.15),rgba(55,48,42,.55)),linear-gradient(135deg,#aaa39b,#6e6964)}.final-photo h2{font:400 clamp(5rem,12vw,10rem)/.8 Italianno,cursive;margin:0}.final-photo h2 span{font:.5em Cormorant Garamond,serif}.final-photo>div>p:last-child{letter-spacing:.45em;padding-left:.45em}
+footer{padding:4rem 1.5rem;text-align:center;background:#292725ba;color:rgba(255,255,255,.8)}footer strong{font:2rem Cormorant Garamond,serif;letter-spacing:.2em;color:#fff}footer p{font:1.15rem Cormorant Garamond,serif}footer small{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase}.music{position:fixed;z-index:100;right:1rem;bottom:1rem;width:44px;height:44px;border-radius:50%;border:1px solid #fff;background:#292725aa;color:#fff;cursor:pointer}.reveal{opacity:0;transform:translateY(30px);transition:1s}.reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){
+.hero h1{font-size:clamp(4.5rem,21vw,8rem)}.hero-content{padding-top:8rem}.ramos{width:72vw}.section{padding:6.5rem 1.25rem}.story-grid{grid-template-columns:1fr;text-align:center}.story-grid .text{margin-left:auto}.story-photo{min-height:500px}.gallery-grid{grid-template-columns:1fr 1fr}.gallery-grid .photo,.gallery-grid .photo:nth-child(n){grid-column:auto;min-height:220px}.countdown{gap:.7rem}.countdown strong{font-size:2.1rem}.photo-main{min-height:70svh}}
+.imagem-fundo{
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover
+        ;
+        z-index: -2;
+    }
+
+.com{
+    color: black;
+    font-size: 18px;
+}
