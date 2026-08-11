@@ -1,20 +1,118 @@
-const config={whatsappNumber:"SEU_NUMERO_AQUI",giftListUrl:"SEU_LINK_DA_LISTA_AQUI"};
-const loader=document.querySelector(".loader");window.addEventListener("load",()=>setTimeout(()=>loader.classList.add("hide"),700));
+const config = {
+    whatsappNumber: "SEU_NUMERO_AQUI", 
+    giftListUrl: "SEU_LINK_DA_LISTA_AQUI"
+};
 
-document.querySelector("#open")?.addEventListener("click",()=>document.querySelector("#intro")?.scrollIntoView({behavior:"smooth"}));
+// Loader
+const loader = document.querySelector(".loader");
+window.addEventListener("load", () => {
+    setTimeout(() => loader.classList.add("hide"), 700);
+});
 
-const target=new Date(2026,9,17,15,0,0);
-function countdown(){const d=target-Date.now();if(d<=0){document.querySelector(".countdown").innerHTML="<strong>É hoje!</strong>";return}
-const s=Math.floor(d/1000),day=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
-document.querySelector("#days").textContent=String(day).padStart(2,"0");document.querySelector("#hours").textContent=String(h).padStart(2,"0");document.querySelector("#minutes").textContent=String(m).padStart(2,"0");document.querySelector("#seconds").textContent=String(sec).padStart(2,"0")}
-countdown();setInterval(countdown,1000);
+// Music Player
+const audio = document.querySelector("#audio");
+const musicBtn = document.querySelector("#music");
 
-const rsvp=document.querySelector("#rsvp");if(config.whatsappNumber!=="SEU_NUMERO_AQUI"){rsvp.href=`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent("Olá, Bruno e Izabella! Gostaria de confirmar minha presença no casamento de vocês, no dia 17/10/2026.")}`}else rsvp.onclick=e=>{e.preventDefault();alert("Configure o número de WhatsApp em js/script.js.")};
+// Scroll suave para o convite
+document.querySelector("#open")?.addEventListener("click", () => {
+    const target = document.querySelector("#intro");
+    if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+    }
+     if (audio && audio.paused) {
+        audio.play().then(() => {
+            if (musicBtn) musicBtn.textContent = "♫"; // Atualiza o ícone do botão flutuante
+        }).catch(err => {
+            console.error("O áudio não pôde ser iniciado:", err);
+        });
+    }
+});
 
-const gifts=document.querySelector("#gifts");if(config.giftListUrl!=="SEU_LINK_DA_LISTA_AQUI")gifts.href=config.giftListUrl;else gifts.onclick=e=>{e.preventDefault();alert("Configure o link da lista em js/script.js.")};
+// Countdown
+const targetDate = new Date(2026, 9, 17, 15, 30, 0); // Meses em JS começam em 0 (9 = Outubro)
 
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll(".reveal").forEach(e=>obs.observe(e));
+function updateCountdown() {
+    const now = Date.now();
+    const diff = targetDate - now;
+    
+    const countdownEl = document.querySelector(".countdown");
+    if (!countdownEl) return;
 
-document.querySelectorAll("[data-image]").forEach(el=>{const img=new Image(),path=`assets/images/${el.dataset.image}`;img.onload=()=>{el.style.backgroundImage=`linear-gradient(180deg,rgba(30,25,22,.03),rgba(30,25,22,.16)),url("${path}")`;el.style.backgroundSize="cover";el.style.backgroundPosition="center";el.querySelector("span")?.remove()};img.src=path});
+    if (diff <= 0) {
+        countdownEl.innerHTML = "<strong>É hoje!</strong>";
+        return;
+    }
 
-const audio=document.querySelector("#audio"),music=document.querySelector("#music");music.onclick=async()=>{if(audio.paused){try{await audio.play();music.textContent="♫"}catch{alert("Adicione assets/music.mp3 para usar música.")}}else{audio.pause();music.textContent="♪"}};
+    const s = Math.floor(diff / 1000);
+    const d = Math.floor(s / 86400);
+    const h = Math.floor((s % 86400) / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+
+    document.querySelector("#days").textContent = String(d).padStart(2, "0");
+    document.querySelector("#hours").textContent = String(h).padStart(2, "0");
+    document.querySelector("#minutes").textContent = String(m).padStart(2, "0");
+    document.querySelector("#seconds").textContent = String(sec).padStart(2, "0");
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// RSVP Link
+const rsvpBtn = document.querySelector("#rsvp");
+if (rsvpBtn) {
+    if (config.whatsappNumber !== "SEU_NUMERO_AQUI") {
+        const msg = encodeURIComponent("Olá, Bruno e Izabella! Gostaria de confirmar minha presença no casamento de vocês no dia 17/10/2026.");
+        rsvpBtn.href = `https://wa.me/${config.whatsappNumber}?text=${msg}`;
+    } else {
+        rsvpBtn.onclick = (e) => {
+            e.preventDefault();
+            alert("Configure o número de WhatsApp em js/script.js.");
+        };
+    }
+}
+
+// Gift List Link
+const giftBtn = document.querySelector("#gifts");
+if (giftBtn) {
+    if (config.giftListUrl !== "SEU_LINK_DA_LISTA_AQUI") {
+        giftBtn.href = config.giftListUrl;
+        giftBtn.target = "_blank";
+    } else {
+        giftBtn.onclick = (e) => {
+            e.preventDefault();
+            alert("Configure o link da lista em js/script.js.");
+        };
+    }
+}
+
+// Reveal animation on scroll
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+
+
+if (musicBtn && audio) {
+    musicBtn.onclick = async () => {
+        if (audio.paused) {
+            try {
+                await audio.play();
+                musicBtn.textContent = "♫";
+            } catch (err) {
+                console.error("Erro ao tocar áudio:", err);
+                alert("Não foi possível carregar a música. Verifique o caminho do arquivo.");
+            }
+        } else {
+            audio.pause();
+            musicBtn.textContent = "♪";
+        }
+    };
+}
