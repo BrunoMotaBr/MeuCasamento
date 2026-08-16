@@ -40,7 +40,8 @@
     a{
         img{
             width: 47px;
-            height: 50px;
+            height: auto;
+            align-self: center;
         }
     }
 }
