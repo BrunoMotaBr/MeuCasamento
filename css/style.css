@@ -34,10 +34,10 @@
 .icones{
     display: flex;
     justify-content: center;
-    gap: 1rem;
     margin-top: 1rem;
     gap: 25px;
     a{
+      max-width: 120px
         img{
             width: 70px;
             height: auto;
