@@ -76,6 +76,11 @@ footer{padding:4rem 1.5rem;text-align:center;background:#292725ba;color:rgba(255
         ;
         z-index: -2;
     }
+.icones{
+   a{
+      min-width: auto;
+   }
+}
 
 .com{
     color: black;
